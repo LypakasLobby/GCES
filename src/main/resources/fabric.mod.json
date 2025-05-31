@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "gces",
+  "version": "${version}",
+  "name": "GCES",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "All-Rights-Reserved",
+  "icon": "assets/gces/icon.png",
+  "environment": "server",
+  "entrypoints": {
+    "main": [
+      "com.lypaka.gces.GCES"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
