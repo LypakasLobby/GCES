@@ -17,10 +17,10 @@ public class SpawnListener {
     public static void register() {
 
         CobblemonEvents.POKEMON_ENTITY_SPAWN.subscribe(Priority.NORMAL, event -> {
-
+            if (!ConfigGetters.scalePokemonSpawns)
+                return Unit.INSTANCE;
             PokemonEntity entity = event.getEntity();
             if (event.getCtx().getCause().getEntity() instanceof ServerPlayerEntity) {
-
                 ServerPlayerEntity player = (ServerPlayerEntity) event.getCtx().getCause().getEntity();
                 if (player != null) {
 

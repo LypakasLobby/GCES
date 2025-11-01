@@ -19,6 +19,9 @@ public class EXPListener {
 
             Pokemon pokemon = event.getPokemon();
             ServerPlayerEntity player = pokemon.getOwnerPlayer();
+            if(player == null){
+                return Unit.INSTANCE;
+            }
             String diff = ConfigGetters.playerAccountsMap.get(player.getUuid().toString()).get("Difficulty");
             if (diff.equalsIgnoreCase("none")) return Unit.INSTANCE;
             Difficulty difficulty = GCES.difficultyMap.get(diff);
@@ -26,11 +29,12 @@ public class EXPListener {
             int tierLevel = Integer.parseInt(ConfigGetters.playerAccountsMap.get(player.getUuid().toString()).get("Leveling"));
             int maxLevel = levelingModule.getTierMap().get("Tier-" + tierLevel);
             int pokemonLevel = pokemon.getLevel();
-
-            if (pokemonLevel >= maxLevel) {
+            int experience = event.getExperience();
+            int experienceRequired = pokemon.getExperienceToLevel(maxLevel+1);
+            if (pokemonLevel >= maxLevel || experience >= experienceRequired) {
 
                 event.cancel();
-                event.setExperience(0);
+                event.setExperience(Math.max(experienceRequired - 1,0));
                 player.sendMessage(FancyTextHandler.getFormattedText(ConfigGetters.levelingTierMessage));
 
             }
