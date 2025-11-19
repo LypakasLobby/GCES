@@ -10,8 +10,10 @@ public class ServerShuttingDownListener implements ServerLifecycleEvents.ServerS
     @Override
     public void onServerStopping (MinecraftServer minecraftServer) {
 
+        GCES.logger.info("Starting save on server shutdown");
         GCES.configManager.getConfigNode(1, "Accounts").setValue(ConfigGetters.playerAccountsMap);
         GCES.configManager.save();
+        GCES.logger.info("Saved on server shutdown.");
 
     }
 

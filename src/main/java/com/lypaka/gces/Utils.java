@@ -24,8 +24,10 @@ public class Utils {
             @Override
             public void run() {
 
+                GCES.logger.info("Starting save...");
                 GCES.configManager.getConfigNode(1, "Accounts").setValue(ConfigGetters.playerAccountsMap);
                 GCES.configManager.save();
+                GCES.logger.info("Save completed.");
 
             }
 

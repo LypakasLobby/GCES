@@ -23,9 +23,9 @@ public class SpawnListener {
             Pokemon pokemon = entity.getPokemon();
             if (!pokemon.isPlayerOwned()) {
 
-                if (event.getCtx().getCause().getEntity() instanceof ServerPlayerEntity) {
+                if (event.getSpawnablePosition().getCause().getEntity() instanceof ServerPlayerEntity) {
 
-                    ServerPlayerEntity player = (ServerPlayerEntity) event.getCtx().getCause().getEntity();
+                    ServerPlayerEntity player = (ServerPlayerEntity) event.getSpawnablePosition().getCause().getEntity();
                     if (player != null) {
 
                         String diff = ConfigGetters.playerAccountsMap.get(player.getUuid().toString()).get("Difficulty");
